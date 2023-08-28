@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Entry links test page</title>
+  </head>
+  <body>
+
+<h1>{{ entry.name }}</h1>
+
+<ul>
+    {% for sec in entry.seconddatabase_set.all %}
+    <li>{{ sec.filling }} -- {{ sec.super_number }} numbi{{ sec.super_number|pluralize }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'app:detailowitsch' entry.id %}">Increase number again?</a> 
+<!-- "detailowitsch" above comes from the name attribute of the path function defined in /app/urls.py  -->
+
+  </body>
+</html>

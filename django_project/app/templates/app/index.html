@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Entry links test page</title>
+  </head>
+  <body>
+
+    {% if latest_entries_list %}
+    <ul>
+    {% for entry in latest_entries_list %}
+        <li><a href="{% url 'app:detailowitsch' entry.id %}">{{ entry.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No entries are available.</p>
+{% endif %}
+
+
+
+
+
+  </body>
+</html>

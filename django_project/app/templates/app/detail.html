@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Entry links test page</title>
+  </head>
+  <body>
+    
+    <!-- <h1>{{ entry.name }}</h1> -->
+<!-- <ul>
+{% for sec in entry.seconddatabase_set.all %}
+    <li>{{ sec.filling }}</li>
+{% endfor %}
+</ul> -->
+
+
+<form action="{% url 'app:numbi' entry.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ entry.name }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for sec in entry.seconddatabase_set.all %}
+        <input type="radio" name="second" id="second{{ forloop.counter }}" value="{{ sec.id }}">
+        <label for="second{{ forloop.counter }}">{{ sec.filling }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Increase numbi">
+</form>
+  </body>
+</html>

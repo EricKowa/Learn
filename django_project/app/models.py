@@ -9,7 +9,7 @@ import datetime
 
 class FirstDatabase(models.Model):
     name = models.CharField(max_length=100)
-    entry_created = models.DateTimeField("Date entry created", default=timezone.now())
+    entry_created = models.DateTimeField("Date entry created")
 
     entry_type= models.CharField(max_length=100, default="Supertype")
     def __str__(self):
