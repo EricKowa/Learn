@@ -16,7 +16,8 @@ class FirstDatabase(models.Model):
         return self.name
     
     def created_recently(self):
-        return self.entry_created >= timezone.now() - datetime.timedelta(days=2)
+        now = timezone.now()
+        return now - datetime.timedelta(days=2) <= self.entry_created <= now 
     
 
 class SecondDatabase(models.Model):

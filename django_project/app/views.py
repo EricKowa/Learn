@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
+from django.utils import timezone
 
 from .models import FirstDatabase, SecondDatabase
 
@@ -14,8 +15,8 @@ class IndexView(generic.ListView):
     context_object_name = "latest_entries_list"
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return FirstDatabase.objects.order_by("-entry_created")[:5]
+        """Return the last five published entries, not including those set to be created in the future."""
+        return FirstDatabase.objects.filter(entry_created__lte=timezone.now()).order_by("-entry_created")[:5]
 
 # def index(request):
 #     latest_entries_list = FirstDatabase.objects.order_by("-entry_created")[:5]
